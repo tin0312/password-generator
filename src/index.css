@@ -1,0 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #08070B;
+  color: #E6E5EA;
+}
+.display-container,
+.setting-container{
+  background-color: #24232C;
+}
+.main-container{
+  height: 100vh;
+}
