@@ -1,15 +1,15 @@
-*{
-  margin: 0;
-  padding: 0;
+* {
+	margin: 0;
+	padding: 0;
 }
 body {
-  background-color: #08070B;
-  color: #E6E5EA;
+	background-color: #08070b;
+	color: #e6e5ea;
 }
 .display-container,
-.setting-container{
-  background-color: #24232C;
+.setting-container {
+	background-color: #24232c;
 }
-.main-container{
-  height: 100vh;
+.main-container {
+	height: 100vh;
 }

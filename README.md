@@ -5,7 +5,7 @@
 ## Table of contents
 
 - [Overview](#overview)
-    - [Functionality](#functionality)
+  - [Functionality](#functionality)
   - [Screenshot](#screenshot)
   - [Links](#links)
   - [Built with](#built-with)
@@ -47,4 +47,3 @@ Users should be able to:
 ## Author
 
 - Website - [Justin](https://fabulous-lily-7976cc.netlify.app/)
-
