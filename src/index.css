@@ -1,3 +1,7 @@
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("./assets/fonts/static/JetBrainsMono-Bold.ttf");
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -10,6 +14,37 @@ body {
 .setting-container {
 	background-color: #24232c;
 }
+.display-container {
+	min-height: 6vh;
+}
 .main-container {
 	height: 100vh;
+	width: 50%;
+}
+.copy-icon {
+	width: 21px;
+	height: 24px;
+}
+.copy-icon:hover {
+	cursor: pointer;
+}
+#password-display {
+	margin-bottom: 0;
+	color: #e6e5ea;
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+}
+#password-app-header {
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	color: #817d92;
+}
+@media only screen and (max-width: 575.98px) {
+	.main-container {
+		width: 100%;
+	}
 }

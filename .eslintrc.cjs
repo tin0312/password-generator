@@ -31,7 +31,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/prop-types": 0,
-    indent: ["error", 4],
     "linebreak-style": 1,
     quotes: ["error", "double"],
   },
