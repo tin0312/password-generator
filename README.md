@@ -27,7 +27,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![App-Screenshot](./src/assets/images/app-screenshot.png)
 
 ### Links
 
