@@ -19,13 +19,13 @@ function App() {
 						<h3 id="password-app-header">Password Generator</h3>
 					</Col>
 				</Row>
-				<Row className="d-flex display-container align-items-center justify-content-center p-3 w-100 mt-3">
+				<Row className="d-flex display-container align-items-center justify-content-center p-1 w-100 mt-3">
 					<Col className="d-flex align-items-center w-100 p-0 h-100" xs={12} lg={12}>
 						<Dislay setRandomPassword={setRandomPassword} />
 					</Col>
 				</Row>
 				{/* Setting*/}
-				<Row className="setting-container pr-3 pb-3 mt-4 w-100">
+				<Row className="setting-container p-1 pb-4 mt-4 w-100">
 					<Col xs={12} lg={12}>
 						<Setting
 							setRandomPassword={setRandomPassword}

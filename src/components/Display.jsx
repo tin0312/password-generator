@@ -4,7 +4,7 @@ import { passwordContext } from "../App"
 import copyIcon from "../assets/images/icon-copy.svg"
 import copiedIcon from "../assets/images/copied-icon.svg"
 
-export default function Display({setRandomPassword}) {
+export default function Display({ setRandomPassword }) {
 	const defaultPassword = "P4$5W0rD!"
 	const [copiedStatus, setCopiedStatus] = React.useState(false)
 	const { randomPassword } = useContext(passwordContext)

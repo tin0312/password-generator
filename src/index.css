@@ -42,7 +42,7 @@ body {
 }
 #password-app-header {
 	font-family: "JetBrains Mono", sans-serif;
-	font-size: 26px;
+	font-size: 1.5em;
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
@@ -52,11 +52,27 @@ body {
 	.main-container {
 		width: 100%;
 	}
+	#password-app-header {
+		font-size: 1em !important;
+	}
 	.custom-slider {
 		width: 68vw !important;
 	}
 	.option {
 		min-width: 74vw !important;
+	}
+	.password-level-header {
+		font-size: 0.8em !important;
+	}
+	.password-level {
+		font-size: 0.904em !important;
+	}
+	.security-indicator {
+		width: 5px !important;
+		height: 23px !important;
+	}
+	.rating-indicator-container {
+		gap: 0.2em !important;
 	}
 }
 /* Settings*/
@@ -89,31 +105,78 @@ input[type="checkbox"] {
 }
 /* customize a new checkbox */
 input[type="checkbox"]::before {
-	content: '';
+	content: "";
 	display: block;
 	width: 20px;
-	height: 20px; 
-	border: 1px solid #000;
-	background-color: #fff;
+	height: 20px;
+	border: 1px solid #e6e5ea;
+	background-color: #18171f;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
-  }
+}
+input[type="checkbox"]:hover::before {
+	border: 1px solid #a4ffaf;
+}
 /* Customize the ticker when checked */
 input[type="checkbox"]:checked::before {
 	content: "\2713";
 	font-size: 0.8rem;
-	color: #18171F; 
+	color: #18171f;
 	font-weight: 700;
 	position: absolute;
-  }
-input[type="checkbox"]:checked::before{
+	border: 1px solid #18171f;
+}
+input[type="checkbox"]:checked::before {
 	background-color: #a4ffaf;
 }
 label {
 	font-family: "JetBrains Mono", sans-serif;
 	font-size: 1em;
 	font-weight: 700;
+}
+/* Password Rating Indicators*/
+
+.rating-container {
+	background-color: #18171f;
+}
+.rating-indicator-container {
+	gap: 0.5em;
+}
+.password-level,
+.password-level-header {
+	margin-bottom: 0;
+	text-transform: uppercase;
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 1.3em;
+	font-weight: 700;
+}
+.password-level {
+	padding-right: 2em;
+}
+.password-level-header {
+	color: #817d92;
+	font-size: 1em;
+}
+.security-indicator {
+	width: 10px;
+	height: 28px;
+}
+
+/* Password Generate Button*/
+.custom-btn {
+	width: 100%;
+	color: #24232c;
+	background-color: #a4ffaf;
+	border: none !important;
+}
+.custom-btn:hover {
+	background-color: #24232c !important;
+	border: 1px solid #a4ffaf !important;
+	color: #a4ffaf;
+}
+#btn-arrow {
+	padding-left: 0.5em;
 }

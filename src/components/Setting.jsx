@@ -1,6 +1,13 @@
 import React from "react"
 import { Container, Col, Row, Button, Form } from "react-bootstrap"
 import RangeSlider from "react-bootstrap-range-slider"
+import empty from "../assets/images/empty.png"
+import strong from "../assets/images/strong.png"
+import weak from "../assets/images/weak.png"
+import tooWeak from "../assets/images/tooWeak.png"
+import medium from "../assets/images/medium.png"
+import buttonArrow from "../assets/images/btn-arrow.svg"
+import buttonArrowIdle from "../assets/images/btn-arrow-idle.svg"
 
 export default function Setting({ setRandomPassword, randomPassword }) {
 	const [passwordLength, setPasswordLength] = React.useState(0)
@@ -8,17 +15,23 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 	const uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	const symbols = "!@#$%^&*()_+{}:\"<>?~`-=[];',./"
 	const numbers = "123456789"
+	const [isHovered, setIsHovered] = React.useState(false)
+	// Requires at least one lowercase letter, one uppercase letter, one digit, and one special character.
+	// Minimum length: 10 characters.
+	const strongPassword =
+		/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{10,}$/
 
-	const strongPassword = new RegExp(
-		"(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})"
-	)
-	const mediumPassword = new RegExp(
-		"((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))"
-	)
-	const weakPassword = new RegExp("(?=.*[a-z])(?=.*[0-9])|(?=.*[A-Z])(?=.*[0-9])")
-	const tooWeakPassword = new RegExp(
-		"(?=.*[0-9])|(?=.*[a-z])|(?=.*[A-Z])| ([^A-Za-z0-9])"
-	)
+	// Requires a combination of at least one of the sets (lowercase, uppercase, digit, special character).
+	// Minimum length: 8 characters, maximum length: 12 characters.
+	const mediumPassword =
+		/^(?=.*[a-z])|(?=.*[A-Z])|(?=.*[0-9])|(?=.*[^A-Za-z0-9]).{8,12}$/
+
+	// Requires at least one lowercase letter, one digit, and optionally one uppercase letter.
+	// Minimum length: 6 characters.
+	const weakPassword = /^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{6,}$/
+
+	// Requires at least one character that is not an alphanumeric character.
+	const tooWeakPassword = /[^A-Za-z0-9]/
 
 	const [passwordLevel, setPasswordLevel] = React.useState("")
 	const [isUppercase, setIsUpperCase] = React.useState(false)
@@ -76,7 +89,7 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 		} else if (weakPassword.test(randomPassword)) {
 			setPasswordLevel("Weak")
 		} else if (tooWeakPassword.test(randomPassword)) {
-			setPasswordLevel("Too Weak")
+			setPasswordLevel("Too Weak!")
 		}
 	}
 	return (
@@ -117,7 +130,11 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 			</Row>
 			{/* Options */}
 			<Row className="d-flex flex-column mt-2">
-				<Col xs={12} lg={12} className="d-flex w-100 align-items-center option p-0">
+				<Col
+					xs={12}
+					lg={12}
+					className="d-flex w-100 align-items-center option p-0 mb-3"
+				>
 					<Form.Check
 						type={"checkbox"}
 						id={"checkbox-1"}
@@ -126,7 +143,7 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 						onChange={(e) => handleSelection(e)}
 					/>
 				</Col>
-				<Col xs={12} lg={12} className="d-flex option p-0">
+				<Col xs={12} lg={12} className="d-flex option p-0 mb-3">
 					<Form.Check
 						type={"checkbox"}
 						id={"checkbox-2"}
@@ -135,7 +152,7 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 						onChange={(e) => handleSelection(e)}
 					/>
 				</Col>
-				<Col xs={12} lg={12} className="d-flex option p-0">
+				<Col xs={12} lg={12} className="d-flex option p-0 mb-3">
 					<Form.Check
 						type={"checkbox"}
 						id={"checkbox-3"}
@@ -155,18 +172,69 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 				</Col>
 			</Row>
 			{/* Password Rating */}
-			<Row className="mt-5">
-				<Col>
-					<h3>STRENGTH</h3>
+			<Row className="rating-container mt-5 p-3">
+				<Col xs={6} lg={6} className="d-flex rating align-items-center p-0">
+					<h3 className="password-level-header">strength</h3>
 				</Col>
-				<Col>
-					<p>{passwordLevel}</p>
+				<Col
+					xs={4}
+					lg={4}
+					className="d-flex rating align-items-center justify-content-start p-0"
+				>
+					<p className="password-level">{passwordLevel}</p>
+				</Col>
+				<Col
+					className="rating-indicator-container d-flex align-items-center justify-content-start p-0 "
+					xs={2}
+					lg={2}
+				>
+					{passwordLevel === "Too Weak!" ? (
+						<>
+							<img className="security-indicator" src={tooWeak} alt="Too Weak" />
+							<img className="security-indicator" src={empty} alt="Weak" />
+							<img className="security-indicator" src={empty} alt="Empty" />
+							<img className="security-indicator" src={empty} alt="Empty" />
+						</>
+					) : passwordLevel === "Weak" ? (
+						<>
+							<img className="security-indicator" src={weak} alt="Weak" />
+							<img className="security-indicator" src={weak} alt="Weak" />
+							<img className="security-indicator" src={empty} alt="Empty" />
+							<img className="security-indicator" src={empty} alt="Empty" />
+						</>
+					) : passwordLevel === "Medium" ? (
+						<>
+							<img className="security-indicator" src={medium} alt="Medium" />
+							<img className="security-indicator" src={medium} alt="Medium" />
+							<img className="security-indicator" src={medium} alt="Medium" />
+							<img className="security-indicator" src={empty} alt="Empty" />
+						</>
+					) : passwordLevel === "Strong" ? (
+						<>
+							<img className="security-indicator" src={strong} alt="Strong" />
+							<img className="security-indicator" src={strong} alt="Strong" />
+							<img className="security-indicator" src={strong} alt="Strong" />
+							<img className="security-indicator" src={strong} alt="Strong" />
+						</>
+					) : null}
 				</Col>
 			</Row>
-			<Row>
-				<Col className="mt-4">
-					<Button variant="success" onClick={generateRanPwd}>
-						Generate
+			<Row className="button-container">
+				<Col xs={12} lg={12} className="mt-4 w-100 p-0">
+					<Button
+						className="custom-btn"
+						onClick={generateRanPwd}
+						onMouseEnter={() => setIsHovered(true)}
+						onMouseLeave={() => setIsHovered(false)}
+					>
+						Generate{" "}
+						<span>
+							<img
+								src={!isHovered ? buttonArrowIdle : buttonArrow}
+								alt="btn-arrow"
+								id="btn-arrow"
+							/>
+						</span>
 					</Button>
 				</Col>
 			</Row>
