@@ -21,6 +21,7 @@ body {
 	height: 100vh;
 	width: 50%;
 }
+/* Display */
 .copy-icon {
 	width: 21px;
 	height: 24px;
@@ -28,12 +29,16 @@ body {
 .copy-icon:hover {
 	cursor: pointer;
 }
-#password-display {
+#password-display,
+#default-password-display {
 	margin-bottom: 0;
 	color: #e6e5ea;
 	font-family: "JetBrains Mono", sans-serif;
 	font-size: 32px;
 	font-weight: 700;
+}
+#default-password-display {
+	opacity: 0.5;
 }
 #password-app-header {
 	font-family: "JetBrains Mono", sans-serif;
@@ -47,4 +52,39 @@ body {
 	.main-container {
 		width: 100%;
 	}
+	.custom-slider{
+		width: 68vw !important;
+	}
+	.option{
+		min-width: 74vw !important;
+	}
 }
+/* Settings*/
+.small {
+	align-items: center;
+}
+.length-header,
+.password-length {
+	margin-bottom: 0;
+	padding-left: 0;
+}
+.length-header {
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+}
+.password-length {
+	color: #a4ffaf;
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+}
+/* Options */
+input[type = "checkbox"]:checked{
+	background-color: #A4FFAF;
+}
+label{
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+  }

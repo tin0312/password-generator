@@ -1,7 +1,6 @@
 import React from "react"
-import { Container, Col, Row, Form, Button } from "react-bootstrap"
+import { Container, Col, Row, Button, Form } from "react-bootstrap"
 import RangeSlider from "react-bootstrap-range-slider"
-import { passwordContext } from "../App"
 
 export default function Setting({ setRandomPassword, randomPassword }) {
 	const [passwordLength, setPasswordLength] = React.useState(0)
@@ -62,10 +61,10 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 					ratePassword()
 				}
 			} else {
-				setRandomPassword("One option required")
+				window.alert("One option required!")
 			}
 		} else {
-			setRandomPassword("Password Length required")
+			window.alert("Password length required!")
 		}
 	}
 
@@ -82,55 +81,80 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 	}
 	return (
 		<Container fluid>
-			<Row className="password-length">
-				<Col>
-					<h1>Charecter length</h1>
+			<Row className="range-container">
+				{/* Range Slider */}
+				<Col className="d-flex justify-content-start p-0" xs={12} lg={12}>
+					<Col
+						xs={8}
+						lg={8}
+						className="d-flex justify-content-start align-items-center"
+					>
+						<p className="length-header">Character length</p>
+					</Col>
+					<Col
+						xs={4}
+						lg={4}
+						className="d-flex justify-content-end align-items-center "
+					>
+						<p className="password-length">{passwordLength}</p>
+					</Col>
+				</Col>
+				<Col
+					xs={12}
+					lg={12}
+					className="d-flex justify-content-start range-small p-0"
+				>
 					<RangeSlider
 						value={passwordLength}
 						onChange={(e) => setPasswordLength(parseInt(e.target.value))}
 						step={1}
-						variant={"success"}
+						className="custom-slider"
+						size="lg"
+						style={{ width: "32.8vw" }}
+						tooltip="off"
 					/>
 				</Col>
-				<Row className="d-flex flex-column mt-5">
-					<Col>
-						<Form.Check
-							type={"checkbox"}
-							id={"checkbox-1"}
-							label={"Include Uppercase Letters"}
-							checked={isUppercase}
-							onChange={(e) => handleSelection(e)}
-						/>
-					</Col>
-					<Col>
-						<Form.Check
-							type={"checkbox"}
-							id={"checkbox-2"}
-							label={"Include Lowercase Letters"}
-							checked={isLowercase}
-							onChange={(e) => handleSelection(e)}
-						/>
-					</Col>
-					<Col>
-						<Form.Check
-							type={"checkbox"}
-							id={"checkbox-3"}
-							label={"Include Numbers"}
-							checked={isNumber}
-							onChange={(e) => handleSelection(e)}
-						/>
-					</Col>
-					<Col>
-						<Form.Check
-							type={"checkbox"}
-							id={"checkbox-4"}
-							label={"Include Symbols"}
-							checked={isSymbol}
-							onChange={(e) => handleSelection(e)}
-						/>
-					</Col>
-				</Row>
 			</Row>
+			{/* Options */}
+			<Row className="d-flex flex-column mt-2">
+				<Col xs={12} lg={12} className="d-flex w-100 align-items-center option p-0">
+					<Form.Check
+						type={"checkbox"}
+						id={"checkbox-1"}
+						label={"Include Uppercase Letters"}
+						checked={isUppercase}
+						onChange={(e) => handleSelection(e)}
+					/>
+				</Col>
+				<Col xs={12} lg={12} className="d-flex option p-0">
+					<Form.Check
+						type={"checkbox"}
+						id={"checkbox-2"}
+						label={"Include Lowercase Letters"}
+						checked={isLowercase}
+						onChange={(e) => handleSelection(e)}
+					/>
+				</Col>
+				<Col xs={12} lg={12} className="d-flex option p-0">
+					<Form.Check
+						type={"checkbox"}
+						id={"checkbox-3"}
+						label={"Include Numbers"}
+						checked={isNumber}
+						onChange={(e) => handleSelection(e)}
+					/>
+				</Col>
+				<Col xs={12} lg={12} className="d-flex option p-0">
+					<Form.Check
+						type={"checkbox"}
+						id={"checkbox-4"}
+						label={"Include Symbols"}
+						checked={isSymbol}
+						onChange={(e) => handleSelection(e)}
+					/>
+				</Col>
+			</Row>
+			{/* Password Rating */}
 			<Row className="mt-5">
 				<Col>
 					<h3>STRENGTH</h3>

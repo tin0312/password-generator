@@ -4,9 +4,17 @@ import { passwordContext } from "../App"
 import copyIcon from "../assets/images/icon-copy.svg"
 import copiedIcon from "../assets/images/copied-icon.svg"
 
-export default function Display() {
+export default function Display({setRandomPassword}) {
+	const defaultPassword = "P4$5W0rD!"
 	const [copiedStatus, setCopiedStatus] = React.useState(false)
 	const { randomPassword } = useContext(passwordContext)
+
+	//set up the default password
+	React.useEffect(() => {
+		if (randomPassword === null) {
+			setRandomPassword(defaultPassword)
+		}
+	}, [])
 
 	function copyPassword() {
 		navigator.clipboard.writeText(randomPassword.join("")).then(
@@ -29,11 +37,19 @@ export default function Display() {
 		<Container fluid>
 			<Row className="d-flex h-100 align-items-center justify-content-center">
 				<Col
-					className="d-flex justify-content-start align-items-center overflow-scroll"
+					className="d-flex justify-content-start align-items-center overflow-auto"
 					xs={6}
 					lg={6}
 				>
-					<p id="password-display">{randomPassword}</p>
+					<p
+						id={
+							randomPassword === null
+								? "password-display"
+								: "default-password-display"
+						}
+					>
+						{randomPassword}
+					</p>
 				</Col>
 				<Col
 					className="d-flex h-100 justify-content-end align-items-center"
