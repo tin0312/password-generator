@@ -56,7 +56,7 @@ body {
 		font-size: 1em !important;
 	}
 	.custom-slider {
-		width: 68vw !important;
+		width: 13em !important;
 	}
 	.option {
 		min-width: 74vw !important;
@@ -171,6 +171,10 @@ label {
 	color: #24232c;
 	background-color: #a4ffaf;
 	border: none !important;
+	text-transform: uppercase;
+	font-family: "JetBrains Mono", sans-serif;
+	font-size: 0.9em;
+	font-weight: 700;
 }
 .custom-btn:hover {
 	background-color: #24232c !important;

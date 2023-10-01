@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
 import { Container, Col, Row } from "react-bootstrap"
 import { passwordContext } from "../App"
-import copyIcon from "../assets/images/icon-copy.svg"
-import copiedIcon from "../assets/images/copied-icon.svg"
+import * as Images from "../assets/images"
 
 export default function Display({ setRandomPassword }) {
 	const defaultPassword = "P4$5W0rD!"
@@ -59,7 +58,7 @@ export default function Display({ setRandomPassword }) {
 					<img
 						className="copy-icon"
 						onClick={handleCopy}
-						src={copiedStatus ? copiedIcon : copyIcon}
+						src={copiedStatus ? Images.copiedIcon : Images.copyIcon}
 						alt="copy-icon"
 					/>
 				</Col>

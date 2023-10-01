@@ -1,13 +1,7 @@
 import React from "react"
 import { Container, Col, Row, Button, Form } from "react-bootstrap"
 import RangeSlider from "react-bootstrap-range-slider"
-import empty from "../assets/images/empty.png"
-import strong from "../assets/images/strong.png"
-import weak from "../assets/images/weak.png"
-import tooWeak from "../assets/images/tooWeak.png"
-import medium from "../assets/images/medium.png"
-import buttonArrow from "../assets/images/btn-arrow.svg"
-import buttonArrowIdle from "../assets/images/btn-arrow-idle.svg"
+import * as Images from "../assets/images"
 
 export default function Setting({ setRandomPassword, randomPassword }) {
 	const [passwordLength, setPasswordLength] = React.useState(0)
@@ -38,6 +32,13 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 	const [isLowercase, setIsLowerCase] = React.useState(false)
 	const [isNumber, setIsNumber] = React.useState(false)
 	const [isSymbol, setIsSymbol] = React.useState(false)
+
+	const securityIndicators = {
+		"Too Weak!": [Images.tooWeak, Images.empty, Images.empty, Images.empty],
+		Weak: [Images.weak, Images.weak, Images.empty, Images.empty],
+		Medium: [Images.medium, Images.medium, Images.medium, Images.empty],
+		Strong: [Images.strong, Images.strong, Images.strong, Images.strong],
+	}
 
 	function handleSelection(e) {
 		if (e.target.id === "checkbox-1") {
@@ -123,7 +124,7 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 						step={1}
 						className="custom-slider"
 						size="lg"
-						style={{ width: "32.8vw" }}
+						style={{ width: "28.5em" }}
 						tooltip="off"
 					/>
 				</Col>
@@ -188,35 +189,15 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 					xs={2}
 					lg={2}
 				>
-					{passwordLevel === "Too Weak!" ? (
-						<>
-							<img className="security-indicator" src={tooWeak} alt="Too Weak" />
-							<img className="security-indicator" src={empty} alt="Weak" />
-							<img className="security-indicator" src={empty} alt="Empty" />
-							<img className="security-indicator" src={empty} alt="Empty" />
-						</>
-					) : passwordLevel === "Weak" ? (
-						<>
-							<img className="security-indicator" src={weak} alt="Weak" />
-							<img className="security-indicator" src={weak} alt="Weak" />
-							<img className="security-indicator" src={empty} alt="Empty" />
-							<img className="security-indicator" src={empty} alt="Empty" />
-						</>
-					) : passwordLevel === "Medium" ? (
-						<>
-							<img className="security-indicator" src={medium} alt="Medium" />
-							<img className="security-indicator" src={medium} alt="Medium" />
-							<img className="security-indicator" src={medium} alt="Medium" />
-							<img className="security-indicator" src={empty} alt="Empty" />
-						</>
-					) : passwordLevel === "Strong" ? (
-						<>
-							<img className="security-indicator" src={strong} alt="Strong" />
-							<img className="security-indicator" src={strong} alt="Strong" />
-							<img className="security-indicator" src={strong} alt="Strong" />
-							<img className="security-indicator" src={strong} alt="Strong" />
-						</>
-					) : null}
+					{passwordLevel &&
+						securityIndicators[passwordLevel].map((indicator, index) => (
+							<img
+								key={index}
+								className="security-indicator"
+								src={indicator}
+								alt={`${passwordLevel}`}
+							/>
+						))}
 				</Col>
 			</Row>
 			<Row className="button-container">
@@ -230,7 +211,7 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 						Generate{" "}
 						<span>
 							<img
-								src={!isHovered ? buttonArrowIdle : buttonArrow}
+								src={!isHovered ? Images.buttonArrowIdle : Images.buttonArrow}
 								alt="btn-arrow"
 								id="btn-arrow"
 							/>
