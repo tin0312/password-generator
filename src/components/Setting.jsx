@@ -12,20 +12,22 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 	const [isHovered, setIsHovered] = React.useState(false)
 	// Requires at least one lowercase letter, one uppercase letter, one digit, and one special character.
 	// Minimum length: 10 characters.
-	const strongPassword =
-		/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{10,}$/
+	const strongPassword = new RegExp(
+		"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{10,}$"
+	)
 
 	// Requires a combination of at least one of the sets (lowercase, uppercase, digit, special character).
 	// Minimum length: 8 characters, maximum length: 12 characters.
-	const mediumPassword =
-		/^(?=.*[a-z])|(?=.*[A-Z])|(?=.*[0-9])|(?=.*[^A-Za-z0-9]).{8,12}$/
+	const mediumPassword = new RegExp(
+		"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,12}$"
+	)
 
 	// Requires at least one lowercase letter, one digit, and optionally one uppercase letter.
 	// Minimum length: 6 characters.
-	const weakPassword = /^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{6,}$/
+	const weakPassword = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]).{6,}$")
 
 	// Requires at least one character that is not an alphanumeric character.
-	const tooWeakPassword = /[^A-Za-z0-9]/
+	const tooWeakPassword = new RegExp("[^A-Za-z0-9]")
 
 	const [passwordLevel, setPasswordLevel] = React.useState("")
 	const [isUppercase, setIsUpperCase] = React.useState(false)
@@ -97,6 +99,7 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 		<Container fluid>
 			<Row className="range-container">
 				{/* Range Slider */}
+
 				<Col className="d-flex justify-content-start p-0" xs={12} lg={12}>
 					<Col
 						xs={8}
@@ -113,18 +116,14 @@ export default function Setting({ setRandomPassword, randomPassword }) {
 						<p className="password-length">{passwordLength}</p>
 					</Col>
 				</Col>
-				<Col
-					xs={12}
-					lg={12}
-					className="d-flex justify-content-start range-small p-0"
-				>
+
+				<Col xs={12} lg={12} className="range-small p-0">
 					<RangeSlider
 						value={passwordLength}
 						onChange={(e) => setPasswordLength(parseInt(e.target.value))}
 						step={1}
 						className="custom-slider"
 						size="lg"
-						style={{ width: "28.5em" }}
 						tooltip="off"
 					/>
 				</Col>

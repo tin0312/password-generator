@@ -3,7 +3,7 @@ import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css"
 import Dislay from "./components/Display"
 import Setting from "./components/Setting"
 import { Container, Col, Row } from "react-bootstrap"
-import "./App.css"
+import "./index.css"
 import "./index.scss"
 
 export const passwordContext = createContext(null)
